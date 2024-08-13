@@ -1,0 +1,232 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://dnx.solutions/schemas/citadel/baseline",
+    "type": "object",
+    "properties": {
+        "aws_region": {
+            "type": "string"
+        },
+        "aws_account_id": {
+            "type": "string"
+        },
+        "org_name": {
+            "type": "string"
+        },
+        "cloudtrail": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "global": {
+                    "type": "boolean"
+                },
+                "s3_bucket_name": {
+                    "type": "string"
+                },
+                "kms_key_arn": {
+                    "type": "string"
+                },
+                "log_group_retention_in_days": {
+                    "type": "integer"
+                },
+                "alarms": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "mode": {
+                            "type": "string"
+                        },
+                        "slack_endpoint": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "enabled",
+                        "mode"
+                    ]
+                },
+                "alarms_v2": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "mode": {
+                            "type": "string"
+                        },
+                        "slack_endpoint": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "enabled",
+                        "mode",
+                        "slack_endpoint"
+                    ]
+                }
+            },
+            "required": [
+                "alarms",
+                "enabled",
+                "global",
+                "kms_key_arn",
+                "log_group_retention_in_days",
+                "s3_bucket_name"
+            ]
+        },
+        "guardduty": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "admin_account_id": {
+                    "type": "string"
+                },
+                "alarms": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "slack_endpoint": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "enabled"
+                    ]
+                }
+            },
+            "required": [
+                "admin_account_id",
+                "alarms",
+                "enabled"
+            ]
+        },
+        "securityhub": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "admin_account_id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "admin_account_id",
+                "enabled"
+            ]
+        },
+        "config": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "global": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled",
+                "global"
+            ]
+        },
+        "detective": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "admin_account_id": {
+                    "type": "string"
+                },
+                "members": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "account_id": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "account_id",
+                            "email"
+                        ]
+                    }
+                },
+                "admin_graph_arn": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "admin_account_id",
+                "enabled"
+            ]
+        },
+        "ebs_encryption_by_default": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "cmk_v2": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            }
+        },
+        "ecr": {
+            "type": "object",
+            "properties": {
+                "trust_account_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "trust_account_ids"
+            ]
+        }
+    },
+    "required": [
+        "aws_account_id",
+        "aws_region",
+        "cloudtrail",
+        "config",
+        "ebs_encryption_by_default",
+        "guardduty",
+        "org_name",
+        "securityhub"
+    ]
+}

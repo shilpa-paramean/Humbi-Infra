@@ -1,0 +1,93 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://dnx.solutions/schemas/citadel/docs",
+    "type": "object",
+    "properties": {
+        "stacks": {
+            "type": "object",
+            "properties": {
+                "audit": {
+                    "type": "object",
+                    "properties": {
+                        "workspaces": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^.+$": {
+                                    "$ref": "https://dnx.solutions/schemas/citadel/audit"
+                                }
+                            }
+                        }
+                    }
+                },
+                "baseline": {
+                    "type": "object",
+                    "properties": {
+                        "workspaces": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^.+$": {
+                                    "$ref": "https://dnx.solutions/schemas/citadel/baseline"
+                                }
+                            }
+                        }
+                    }
+                },
+                "identity": {
+                    "type": "object",
+                    "properties": {
+                        "workspaces": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^.+$": {
+                                    "$ref": "https://dnx.solutions/schemas/citadel/identity"
+                                }
+                            }
+                        }
+                    }
+                },
+                "network": {
+                    "type": "object",
+                    "properties": {
+                        "workspaces": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^.+$": {
+                                    "$ref": "https://dnx.solutions/schemas/citadel/network"
+                                }
+                            }
+                        }
+                    }
+                },
+                "platform": {
+                    "type": "object",
+                    "properties": {
+                        "workspaces": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^.+$": {
+                                    "$ref": "https://dnx.solutions/schemas/citadel/platform"
+                                }
+                            }
+                        }
+                    }
+                },
+                "platform-kubernetes": {
+                    "type": "object",
+                    "properties": {
+                        "workspaces": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^.+$": {
+                                    "$ref": "https://dnx.solutions/schemas/citadel/platform-kubernetes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "outputs": {
+            "type": "object"
+        }
+    }
+}

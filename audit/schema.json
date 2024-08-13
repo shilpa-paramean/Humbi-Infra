@@ -1,0 +1,213 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://dnx.solutions/schemas/citadel/audit",
+    "type": "object",
+    "properties": {
+        "aws_region": {
+            "type": "string"
+        },
+        "aws_account_id": {
+            "type": "string"
+        },
+        "org_name": {
+            "type": "string"
+        },
+        "securityhub": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "subscriptions": {
+                    "type": "object",
+                    "properties": {
+                        "pci": {
+                            "type": "boolean"
+                        },
+                        "cis": {
+                            "type": "boolean"
+                        },
+                        "foundational": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "cis",
+                        "foundational",
+                        "pci"
+                    ]
+                },
+                "members": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "account_id": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "account_id",
+                            "email"
+                        ]
+                    }
+                },
+                "alarms": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "enabled"
+                    ]
+                }
+            },
+            "required": [
+                "alarms",
+                "enabled",
+                "members",
+                "subscriptions"
+            ]
+        },
+        "iam_role_auditor": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "trust_type": {
+                    "type": "string"
+                },
+                "saml_provider_arn": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "enabled",
+                "saml_provider_arn",
+                "trust_type"
+            ]
+        },
+        "guardduty": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "logs_buckets": {
+            "type": "object",
+            "properties": {
+                "transition_to_glacier_in_days": {
+                    "type": "integer"
+                },
+                "allow_from_account_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "allow_from_account_ids",
+                "transition_to_glacier_in_days"
+            ]
+        },
+        "chatbot": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "slack_channel_id": {
+                    "type": "string"
+                },
+                "slack_workspace_id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "enabled",
+                "slack_channel_id",
+                "slack_workspace_id"
+            ]
+        },
+        "notifications": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "allow_from_account_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "slack_endpoint": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "allow_from_account_ids",
+                "enabled"
+            ]
+        },
+        "access_logs_buckets": {
+            "type": "object",
+            "properties": {
+                "transition_to_glacier_in_days": {
+                    "type": "integer"
+                },
+                "allow_from_account_ids": {
+                    "type": "object",
+                    "properties": {
+                        "prod": {
+                            "type": "string"
+                        },
+                        "shared-services": {
+                            "type": "string"
+                        },
+                        "production": {
+                            "type": "string"
+                        },
+                        "staging": {
+                            "type": "string"
+                        },
+                        "development": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "shared-services"
+                    ]
+                }
+            },
+            "required": [
+                "allow_from_account_ids",
+                "transition_to_glacier_in_days"
+            ]
+        }
+    },
+    "required": [
+        "access_logs_buckets",
+        "aws_account_id",
+        "aws_region",
+        "chatbot",
+        "guardduty",
+        "iam_role_auditor",
+        "logs_buckets",
+        "notifications",
+        "org_name",
+        "securityhub"
+    ]
+}

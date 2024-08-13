@@ -1,0 +1,236 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://dnx.solutions/schemas/citadel/network",
+    "type": "object",
+    "properties": {
+        "aws_region": {
+            "type": "string"
+        },
+        "aws_account_id": {
+            "type": "string"
+        },
+        "org_name": {
+            "type": "string"
+        },
+        "account_name": {
+            "type": "string"
+        },
+        "network": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "vpc_cidr": {
+                    "type": "string"
+                },
+                "vpc_newbits": {
+                    "type": "integer"
+                },
+                "nat": {
+                    "type": "boolean"
+                },
+                "multi_nat": {
+                    "type": "boolean"
+                },
+                "public_nacl_inbound_tcp_ports": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "public_nacl_outbound_tcp_ports": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "vpc_endpoints": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "vpc_endpoint_dynamodb_gateway": {
+                    "type": "boolean"
+                },
+                "vpc_endpoint_s3_gateway": {
+                    "type": "boolean"
+                },
+                "peering": {
+                    "type": "array"
+                },
+                "max_az": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "enabled",
+                "multi_nat",
+                "name",
+                "nat",
+                "peering",
+                "public_nacl_inbound_tcp_ports",
+                "public_nacl_outbound_tcp_ports",
+                "vpc_cidr",
+                "vpc_endpoints",
+                "vpc_newbits"
+            ]
+        },
+        "vpn": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "cidr": {
+                    "type": "string"
+                },
+                "saml_provider_arn": {
+                    "type": "string"
+                },
+                "split_tunnel": {
+                    "type": "boolean"
+                },
+                "allowed_access_groups": {
+                    "type": "array"
+                }
+            },
+            "required": [
+                "allowed_access_groups",
+                "cidr",
+                "enabled",
+                "name",
+                "saml_provider_arn",
+                "split_tunnel"
+            ]
+        },
+        "domain": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "zones": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "route53_domain": {
+                                "type": "string"
+                            },
+                            "private": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "private",
+                            "route53_domain"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "enabled",
+                "zones"
+            ]
+        },
+        "acm": {
+            "type": "object",
+            "properties": {
+                "certificates": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "domain_names": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "hosted_zone": {
+                                "type": "string"
+                            },
+                            "global": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "domain_names",
+                            "hosted_zone",
+                            "name"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "certificates"
+            ]
+        },
+        "site_to_site_vpn": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "bgp_asn": {
+                    "type": "integer"
+                },
+                "ip_address": {
+                    "type": "string"
+                },
+                "local_cidr": {
+                    "type": "string"
+                },
+                "remote_cidr": {
+                    "type": "string"
+                },
+                "static_only": {
+                    "type": "boolean"
+                },
+                "static_route_destinations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "route_private_subnets": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "bgp_asn",
+                "enabled",
+                "ip_address",
+                "local_cidr",
+                "name",
+                "remote_cidr",
+                "route_private_subnets",
+                "static_only",
+                "static_route_destinations"
+            ]
+        }
+    },
+    "required": [
+        "acm",
+        "aws_account_id",
+        "aws_region",
+        "domain",
+        "network",
+        "org_name",
+        "vpn"
+    ]
+}

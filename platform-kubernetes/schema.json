@@ -1,0 +1,320 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://dnx.solutions/schemas/citadel/platform-kubernetes",
+    "type": "object",
+    "properties": {
+        "aws_region": {
+            "type": "string"
+        },
+        "aws_account_id": {
+            "type": "string"
+        },
+        "org_name": {
+            "type": "string"
+        },
+        "account_name": {
+            "type": "string"
+        },
+        "cluster_name": {
+            "type": "string"
+        },
+        "oidc_provider_arn": {
+            "type": "string"
+        },
+        "cloudwatch_logs": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "cloudwatch_metrics": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "cluster_autoscaler": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "external_dns": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "external_secrets": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "load_balancer_controller": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "metrics_server": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "node_termination_handler": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "istio_operator": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "kiali_operator": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "github_runner": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "github_app_app_id": {
+                    "type": "string"
+                },
+                "github_app_installation_id": {
+                    "type": "string"
+                },
+                "github_organizations": {
+                    "type": "array"
+                },
+                "github_repositories": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "replicas": {
+                                "type": "integer"
+                            },
+                            "label": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "label",
+                            "name",
+                            "replicas"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "enabled",
+                "github_app_app_id",
+                "github_app_installation_id",
+                "github_organizations",
+                "github_repositories"
+            ]
+        },
+        "efs_csi_driver": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "velero": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "dashboard": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "ack": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "argocd": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "http01": {
+                    "type": "array"
+                },
+                "certificates": {
+                    "type": "array"
+                }
+            },
+            "required": [
+                "certificates",
+                "enabled",
+                "http01"
+            ]
+        },
+        "grafana_prometheus_monitoring": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "vpc_cni": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "calico": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "cert_manager": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "dns01": {
+                    "type": "array"
+                }
+            },
+            "required": [
+                "dns01",
+                "enabled"
+            ]
+        }
+    },
+    "required": [
+        "account_name",
+        "ack",
+        "argocd",
+        "aws_account_id",
+        "aws_region",
+        "calico",
+        "cert_manager",
+        "cloudwatch_logs",
+        "cloudwatch_metrics",
+        "cluster_autoscaler",
+        "cluster_name",
+        "dashboard",
+        "efs_csi_driver",
+        "external_dns",
+        "external_secrets",
+        "github_runner",
+        "grafana_prometheus_monitoring",
+        "istio_operator",
+        "kiali_operator",
+        "load_balancer_controller",
+        "metrics_server",
+        "node_termination_handler",
+        "oidc_provider_arn",
+        "org_name",
+        "velero",
+        "vpc_cni"
+    ]
+}

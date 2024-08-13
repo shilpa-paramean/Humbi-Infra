@@ -1,0 +1,1643 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://dnx.solutions/schemas/citadel/platform",
+    "type": "object",
+    "properties": {
+        "aws_region": {
+            "type": "string"
+        },
+        "aws_account_id": {
+            "type": "string"
+        },
+        "org_name": {
+            "type": "string"
+        },
+        "account_name": {
+            "type": "string"
+        },
+        "notifications_sns_topic_arn": {
+            "type": "string"
+        },
+        "ecs": {
+            "type": "object",
+            "properties": {
+                "create_iam_service_linked_role": {
+                    "type": "boolean"
+                },
+                "clusters": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "fargate_only": {
+                                "type": "boolean"
+                            },
+                            "alb": {
+                                "type": "boolean"
+                            },
+                            "certificate_arn": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "alb",
+                            "fargate_only",
+                            "name"
+                        ]
+                    }
+                },
+                "apps": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "image": {
+                                "type": "string"
+                            },
+                            "cluster_name": {
+                                "type": "string"
+                            },
+                            "hostnames": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "hostname_redirects": {
+                                "type": "string"
+                            },
+                            "hosted_zone": {
+                                "type": "string"
+                            },
+                            "hostname_create": {
+                                "type": "boolean"
+                            },
+                            "paths": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "healthcheck_path": {
+                                "type": "string"
+                            },
+                            "service_health_check_grace_period_seconds": {
+                                "type": "integer"
+                            },
+                            "cloudwatch_logs_export": {
+                                "type": "boolean"
+                            },
+                            "autoscaling_min": {
+                                "type": "integer"
+                            },
+                            "autoscaling_max": {
+                                "type": "integer"
+                            },
+                            "create_iam_codedeployrole": {
+                                "type": "boolean"
+                            },
+                            "launch_type": {
+                                "type": "string"
+                            },
+                            "fargate_spot": {
+                                "type": "boolean"
+                            },
+                            "memory": {
+                                "type": "integer"
+                            },
+                            "cpu": {
+                                "type": "integer"
+                            },
+                            "container_port": {
+                                "type": "integer"
+                            },
+                            "static_variables": {
+                                "type": "object",
+                                "properties": {
+                                    "APP_VERSION": {
+                                        "type": "string"
+                                    },
+                                    "APP_NAME": {
+                                        "type": "string"
+                                    },
+                                    "APP_ENV": {
+                                        "type": "string"
+                                    },
+                                    "APP_DEBUG": {
+                                        "type": "string"
+                                    },
+                                    "APP_URL": {
+                                        "type": "string"
+                                    },
+                                    "MODULE_CACHE_ENABLED": {
+                                        "type": "string"
+                                    },
+                                    "HTTPS": {
+                                        "type": "string"
+                                    },
+                                    "APP_LOG_LEVEL": {
+                                        "type": "string"
+                                    },
+                                    "LOG_CHANNEL": {
+                                        "type": "string"
+                                    },
+                                    "LOG_LEVEL": {
+                                        "type": "string"
+                                    },
+                                    "LOG_STDERR_FORMATTER": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_ALLOW_TOKEN_IN_COOKIE": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_API_IDENTIFIER": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_CLIENT_ID": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_DOMAIN": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CLIENT_AUDIENCE": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CLIENT_DOMAIN": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CLIENT_ID": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CONNECTION": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_USER_ROLE": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CLIENT_SCOPES": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_MRS_TO_ARK_CLIENT_ID": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_MRS_TO_ARK_CLIENT_AUDIENCE": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_MRS_TO_ARK_CLIENT_SCOPES": {
+                                        "type": "string"
+                                    },
+                                    "DB_CONNECTION": {
+                                        "type": "string"
+                                    },
+                                    "DB_PORT": {
+                                        "type": "integer"
+                                    },
+                                    "CACHE_DRIVER": {
+                                        "type": "string"
+                                    },
+                                    "CACHE_PREFIX": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_PASSWORD": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_CACHE_DB": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_CLIENT": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_CLUSTER": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_DB": {
+                                        "type": "string"
+                                    },
+                                    "FILESYSTEM_DRIVER": {
+                                        "type": "string"
+                                    },
+                                    "FILESYSTEM_CLOUD": {
+                                        "type": "string"
+                                    },
+                                    "AWS_BUCKET": {
+                                        "type": "string"
+                                    },
+                                    "SQS_QUEUE": {
+                                        "type": "string"
+                                    },
+                                    "QUEUE_CONNECTION": {
+                                        "type": "string"
+                                    },
+                                    "QUEUE_TIMEOUT": {
+                                        "type": "string"
+                                    },
+                                    "BROADCAST_DRIVER": {
+                                        "type": "string"
+                                    },
+                                    "SESSION_DRIVER": {
+                                        "type": "string"
+                                    },
+                                    "SESSION_LIFETIME": {
+                                        "type": "string"
+                                    },
+                                    "MAIL_MAILER": {
+                                        "type": "string"
+                                    },
+                                    "MAIL_DRIVER": {
+                                        "type": "string"
+                                    },
+                                    "MAIL_FROM_ADDRESS": {
+                                        "type": "string"
+                                    },
+                                    "MAIL_FROM_NAME": {
+                                        "type": "string"
+                                    },
+                                    "MAILGUN_DOMAIN": {
+                                        "type": "string"
+                                    },
+                                    "TELEHEALTH_URL": {
+                                        "type": "string"
+                                    },
+                                    "PROCESSOR_URL": {
+                                        "type": "string"
+                                    },
+                                    "ARK_MIDDLEWARE_URL": {
+                                        "type": "string"
+                                    },
+                                    "SENTRY_LARAVEL_DSN": {
+                                        "type": "string"
+                                    },
+                                    "SENTRY_TRACES_SAMPLE_RATE": {
+                                        "type": "string"
+                                    },
+                                    "NEW_RELIC_APP_NAME": {
+                                        "type": "string"
+                                    },
+                                    "NEWRELIC_DAEMON_ADDRESS": {
+                                        "type": "string"
+                                    },
+                                    "NEW_RELIC_LOG_FILE": {
+                                        "type": "string"
+                                    },
+                                    "NEW_RELIC_LOG_LEVEL": {
+                                        "type": "string"
+                                    },
+                                    "NEWRELIC_TRANSACTION_TRACER_RECORD_SQL": {
+                                        "type": "string"
+                                    },
+                                    "NEWRELIC_DISTRIBUTED_TRACING_ENABLED": {
+                                        "type": "string"
+                                    },
+                                    "NEWRELIC_TRANSACTION_TRACER_ENABLED": {
+                                        "type": "string"
+                                    },
+                                    "NEWRELIC_TRANSACTION_TRACER_THRESHOLD": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "APP_DEBUG",
+                                    "APP_ENV",
+                                    "APP_LOG_LEVEL",
+                                    "APP_NAME",
+                                    "APP_URL",
+                                    "APP_VERSION",
+                                    "ARK_MIDDLEWARE_URL",
+                                    "AUTH0_ALLOW_TOKEN_IN_COOKIE",
+                                    "AUTH0_API_IDENTIFIER",
+                                    "AUTH0_CLIENT_ID",
+                                    "AUTH0_DOMAIN",
+                                    "AUTH0_MRS_TO_ARK_CLIENT_AUDIENCE",
+                                    "AUTH0_MRS_TO_ARK_CLIENT_ID",
+                                    "AUTH0_MRS_TO_ARK_CLIENT_SCOPES",
+                                    "AWS_BUCKET",
+                                    "BROADCAST_DRIVER",
+                                    "CACHE_DRIVER",
+                                    "CACHE_PREFIX",
+                                    "DB_CONNECTION",
+                                    "DB_PORT",
+                                    "FILESYSTEM_CLOUD",
+                                    "FILESYSTEM_DRIVER",
+                                    "HTTPS",
+                                    "LOG_CHANNEL",
+                                    "LOG_LEVEL",
+                                    "LOG_STDERR_FORMATTER",
+                                    "MAILGUN_DOMAIN",
+                                    "MAIL_DRIVER",
+                                    "MAIL_FROM_ADDRESS",
+                                    "MAIL_FROM_NAME",
+                                    "MAIL_MAILER",
+                                    "MGMT_CLIENT_AUDIENCE",
+                                    "MGMT_CLIENT_DOMAIN",
+                                    "MGMT_CLIENT_ID",
+                                    "MGMT_CLIENT_SCOPES",
+                                    "MGMT_CONNECTION",
+                                    "MGMT_USER_ROLE",
+                                    "MODULE_CACHE_ENABLED",
+                                    "NEWRELIC_DAEMON_ADDRESS",
+                                    "NEWRELIC_DISTRIBUTED_TRACING_ENABLED",
+                                    "NEWRELIC_TRANSACTION_TRACER_ENABLED",
+                                    "NEWRELIC_TRANSACTION_TRACER_RECORD_SQL",
+                                    "NEWRELIC_TRANSACTION_TRACER_THRESHOLD",
+                                    "NEW_RELIC_APP_NAME",
+                                    "NEW_RELIC_LOG_FILE",
+                                    "NEW_RELIC_LOG_LEVEL",
+                                    "PROCESSOR_URL",
+                                    "QUEUE_CONNECTION",
+                                    "QUEUE_TIMEOUT",
+                                    "REDIS_CACHE_DB",
+                                    "REDIS_CLIENT",
+                                    "REDIS_CLUSTER",
+                                    "REDIS_DB",
+                                    "REDIS_PASSWORD",
+                                    "SENTRY_LARAVEL_DSN",
+                                    "SENTRY_TRACES_SAMPLE_RATE",
+                                    "SESSION_DRIVER",
+                                    "SESSION_LIFETIME",
+                                    "SQS_QUEUE",
+                                    "TELEHEALTH_URL"
+                                ]
+                            },
+                            "ssm_variables": {
+                                "type": "object",
+                                "properties": {
+                                    "APP_KEY": {
+                                        "type": "string"
+                                    },
+                                    "DB_DATABASE": {
+                                        "type": "string"
+                                    },
+                                    "DB_HOST": {
+                                        "type": "string"
+                                    },
+                                    "DB_USERNAME": {
+                                        "type": "string"
+                                    },
+                                    "DB_PASSWORD": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_HOST": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_PORT": {
+                                        "type": "string"
+                                    },
+                                    "MAILGUN_SECRET": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CLIENT_SECRET": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_MRS_TO_ARK_CLIENT_SECRET": {
+                                        "type": "string"
+                                    },
+                                    "LICENSE_KEY": {
+                                        "type": "string"
+                                    },
+                                    "NEW_RELIC_API_KEY": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "APP_KEY",
+                                    "AUTH0_MRS_TO_ARK_CLIENT_SECRET",
+                                    "DB_DATABASE",
+                                    "DB_HOST",
+                                    "DB_PASSWORD",
+                                    "DB_USERNAME",
+                                    "LICENSE_KEY",
+                                    "MAILGUN_SECRET",
+                                    "MGMT_CLIENT_SECRET",
+                                    "NEW_RELIC_API_KEY",
+                                    "REDIS_HOST",
+                                    "REDIS_PORT"
+                                ]
+                            },
+                            "deployment_controller": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "autoscaling_max",
+                            "autoscaling_min",
+                            "cloudwatch_logs_export",
+                            "cluster_name",
+                            "container_port",
+                            "cpu",
+                            "create_iam_codedeployrole",
+                            "fargate_spot",
+                            "healthcheck_path",
+                            "hosted_zone",
+                            "hostname_create",
+                            "hostname_redirects",
+                            "hostnames",
+                            "launch_type",
+                            "memory",
+                            "name",
+                            "paths",
+                            "service_health_check_grace_period_seconds"
+                        ]
+                    }
+                },
+                "workers": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "cluster_name": {
+                                "type": "string"
+                            },
+                            "desired_count": {
+                                "type": "integer"
+                            },
+                            "cloudwatch_logs_export": {
+                                "type": "boolean"
+                            },
+                            "launch_type": {
+                                "type": "string"
+                            },
+                            "fargate_spot": {
+                                "type": "boolean"
+                            },
+                            "memory": {
+                                "type": "integer"
+                            },
+                            "cpu": {
+                                "type": "integer"
+                            },
+                            "container_port": {
+                                "type": "integer"
+                            },
+                            "image": {
+                                "type": "string"
+                            },
+                            "static_variables": {
+                                "type": "object",
+                                "properties": {
+                                    "APP_NAME": {
+                                        "type": "string"
+                                    },
+                                    "APP_ENV": {
+                                        "type": "string"
+                                    },
+                                    "APP_DEBUG": {
+                                        "type": "string"
+                                    },
+                                    "MODULE_CACHE_ENABLED": {
+                                        "type": "string"
+                                    },
+                                    "APP_LOG_LEVEL": {
+                                        "type": "string"
+                                    },
+                                    "LOG_CHANNEL": {
+                                        "type": "string"
+                                    },
+                                    "LOG_LEVEL": {
+                                        "type": "string"
+                                    },
+                                    "LOG_STDERR_FORMATTER": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_ALLOW_TOKEN_IN_COOKIE": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_API_IDENTIFIER": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_CLIENT_ID": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_DOMAIN": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CLIENT_AUDIENCE": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CLIENT_DOMAIN": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CLIENT_ID": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CONNECTION": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_USER_ROLE": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CLIENT_SCOPES": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_MRS_TO_ARK_CLIENT_ID": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_MRS_TO_ARK_CLIENT_AUDIENCE": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_MRS_TO_ARK_CLIENT_SCOPES": {
+                                        "type": "string"
+                                    },
+                                    "DB_CONNECTION": {
+                                        "type": "string"
+                                    },
+                                    "DB_PORT": {
+                                        "type": "integer"
+                                    },
+                                    "CACHE_DRIVER": {
+                                        "type": "string"
+                                    },
+                                    "CACHE_PREFIX": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_PASSWORD": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_CACHE_DB": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_CLIENT": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_CLUSTER": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_DB": {
+                                        "type": "string"
+                                    },
+                                    "FILESYSTEM_DRIVER": {
+                                        "type": "string"
+                                    },
+                                    "FILESYSTEM_CLOUD": {
+                                        "type": "string"
+                                    },
+                                    "AWS_BUCKET": {
+                                        "type": "string"
+                                    },
+                                    "SQS_QUEUE": {
+                                        "type": "string"
+                                    },
+                                    "QUEUE_CONNECTION": {
+                                        "type": "string"
+                                    },
+                                    "QUEUE_TIMEOUT": {
+                                        "type": "string"
+                                    },
+                                    "BROADCAST_DRIVER": {
+                                        "type": "string"
+                                    },
+                                    "SESSION_DRIVER": {
+                                        "type": "string"
+                                    },
+                                    "SESSION_LIFETIME": {
+                                        "type": "string"
+                                    },
+                                    "MAIL_MAILER": {
+                                        "type": "string"
+                                    },
+                                    "MAIL_DRIVER": {
+                                        "type": "string"
+                                    },
+                                    "MAIL_FROM_ADDRESS": {
+                                        "type": "string"
+                                    },
+                                    "MAIL_FROM_NAME": {
+                                        "type": "string"
+                                    },
+                                    "MAILGUN_DOMAIN": {
+                                        "type": "string"
+                                    },
+                                    "TELEHEALTH_URL": {
+                                        "type": "string"
+                                    },
+                                    "PROCESSOR_URL": {
+                                        "type": "string"
+                                    },
+                                    "ARK_MIDDLEWARE_URL": {
+                                        "type": "string"
+                                    },
+                                    "SENTRY_LARAVEL_DSN": {
+                                        "type": "string"
+                                    },
+                                    "SENTRY_TRACES_SAMPLE_RATE": {
+                                        "type": "string"
+                                    },
+                                    "NEW_RELIC_APP_NAME": {
+                                        "type": "string"
+                                    },
+                                    "NEWRELIC_DAEMON_ADDRESS": {
+                                        "type": "string"
+                                    },
+                                    "NEW_RELIC_LOG_FILE": {
+                                        "type": "string"
+                                    },
+                                    "NEW_RELIC_LOG_LEVEL": {
+                                        "type": "string"
+                                    },
+                                    "NEWRELIC_TRANSACTION_TRACER_RECORD_SQL": {
+                                        "type": "string"
+                                    },
+                                    "NEWRELIC_DISTRIBUTED_TRACING_ENABLED": {
+                                        "type": "string"
+                                    },
+                                    "NEWRELIC_TRANSACTION_TRACER_ENABLED": {
+                                        "type": "string"
+                                    },
+                                    "NEWRELIC_TRANSACTION_TRACER_THRESHOLD": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "APP_DEBUG",
+                                    "APP_ENV",
+                                    "APP_LOG_LEVEL",
+                                    "APP_NAME",
+                                    "ARK_MIDDLEWARE_URL",
+                                    "AUTH0_ALLOW_TOKEN_IN_COOKIE",
+                                    "AUTH0_API_IDENTIFIER",
+                                    "AUTH0_CLIENT_ID",
+                                    "AUTH0_DOMAIN",
+                                    "AUTH0_MRS_TO_ARK_CLIENT_AUDIENCE",
+                                    "AUTH0_MRS_TO_ARK_CLIENT_ID",
+                                    "AUTH0_MRS_TO_ARK_CLIENT_SCOPES",
+                                    "AWS_BUCKET",
+                                    "BROADCAST_DRIVER",
+                                    "CACHE_DRIVER",
+                                    "CACHE_PREFIX",
+                                    "DB_CONNECTION",
+                                    "DB_PORT",
+                                    "FILESYSTEM_CLOUD",
+                                    "FILESYSTEM_DRIVER",
+                                    "LOG_CHANNEL",
+                                    "LOG_LEVEL",
+                                    "LOG_STDERR_FORMATTER",
+                                    "MAILGUN_DOMAIN",
+                                    "MAIL_DRIVER",
+                                    "MAIL_FROM_ADDRESS",
+                                    "MAIL_FROM_NAME",
+                                    "MAIL_MAILER",
+                                    "MGMT_CLIENT_AUDIENCE",
+                                    "MGMT_CLIENT_DOMAIN",
+                                    "MGMT_CLIENT_ID",
+                                    "MGMT_CLIENT_SCOPES",
+                                    "MGMT_CONNECTION",
+                                    "MGMT_USER_ROLE",
+                                    "MODULE_CACHE_ENABLED",
+                                    "NEWRELIC_DAEMON_ADDRESS",
+                                    "NEWRELIC_DISTRIBUTED_TRACING_ENABLED",
+                                    "NEWRELIC_TRANSACTION_TRACER_ENABLED",
+                                    "NEWRELIC_TRANSACTION_TRACER_RECORD_SQL",
+                                    "NEWRELIC_TRANSACTION_TRACER_THRESHOLD",
+                                    "NEW_RELIC_APP_NAME",
+                                    "NEW_RELIC_LOG_FILE",
+                                    "NEW_RELIC_LOG_LEVEL",
+                                    "PROCESSOR_URL",
+                                    "QUEUE_CONNECTION",
+                                    "QUEUE_TIMEOUT",
+                                    "REDIS_CACHE_DB",
+                                    "REDIS_CLIENT",
+                                    "REDIS_CLUSTER",
+                                    "REDIS_DB",
+                                    "REDIS_PASSWORD",
+                                    "SENTRY_LARAVEL_DSN",
+                                    "SENTRY_TRACES_SAMPLE_RATE",
+                                    "SESSION_DRIVER",
+                                    "SESSION_LIFETIME",
+                                    "SQS_QUEUE",
+                                    "TELEHEALTH_URL"
+                                ]
+                            },
+                            "ssm_variables": {
+                                "type": "object",
+                                "properties": {
+                                    "APP_KEY": {
+                                        "type": "string"
+                                    },
+                                    "DB_DATABASE": {
+                                        "type": "string"
+                                    },
+                                    "DB_HOST": {
+                                        "type": "string"
+                                    },
+                                    "DB_USERNAME": {
+                                        "type": "string"
+                                    },
+                                    "DB_PASSWORD": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_HOST": {
+                                        "type": "string"
+                                    },
+                                    "REDIS_PORT": {
+                                        "type": "string"
+                                    },
+                                    "MAILGUN_SECRET": {
+                                        "type": "string"
+                                    },
+                                    "MGMT_CLIENT_SECRET": {
+                                        "type": "string"
+                                    },
+                                    "AUTH0_MRS_TO_ARK_CLIENT_SECRET": {
+                                        "type": "string"
+                                    },
+                                    "LICENSE_KEY": {
+                                        "type": "string"
+                                    },
+                                    "NEW_RELIC_API_KEY": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "APP_KEY",
+                                    "AUTH0_MRS_TO_ARK_CLIENT_SECRET",
+                                    "DB_DATABASE",
+                                    "DB_HOST",
+                                    "DB_PASSWORD",
+                                    "DB_USERNAME",
+                                    "LICENSE_KEY",
+                                    "MAILGUN_SECRET",
+                                    "MGMT_CLIENT_SECRET",
+                                    "NEW_RELIC_API_KEY",
+                                    "REDIS_HOST",
+                                    "REDIS_PORT"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "cloudwatch_logs_export",
+                            "cluster_name",
+                            "cpu",
+                            "desired_count",
+                            "fargate_spot",
+                            "launch_type",
+                            "memory",
+                            "name"
+                        ]
+                    }
+                },
+                "nlb_apps": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "image": {
+                                "type": "string"
+                            },
+                            "container_port": {
+                                "type": "integer"
+                            },
+                            "port": {
+                                "type": "integer"
+                            },
+                            "cpu": {
+                                "type": "integer"
+                            },
+                            "memory": {
+                                "type": "integer"
+                            },
+                            "cluster_name": {
+                                "type": "string"
+                            },
+                            "nlb_internal": {
+                                "type": "boolean"
+                            },
+                            "hostname": {
+                                "type": "string"
+                            },
+                            "hostname_create": {
+                                "type": "boolean"
+                            },
+                            "hosted_zone": {
+                                "type": "string"
+                            },
+                            "service_health_check_grace_period_seconds": {
+                                "type": "integer"
+                            },
+                            "autoscaling_min": {
+                                "type": "integer"
+                            },
+                            "autoscaling_max": {
+                                "type": "integer"
+                            },
+                            "launch_type": {
+                                "type": "string"
+                            },
+                            "fargate_spot": {
+                                "type": "boolean"
+                            },
+                            "public": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "autoscaling_max",
+                            "autoscaling_min",
+                            "cluster_name",
+                            "container_port",
+                            "cpu",
+                            "fargate_spot",
+                            "hosted_zone",
+                            "hostname",
+                            "hostname_create",
+                            "image",
+                            "launch_type",
+                            "memory",
+                            "name",
+                            "nlb_internal",
+                            "port",
+                            "public",
+                            "service_health_check_grace_period_seconds"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "apps",
+                "clusters",
+                "create_iam_service_linked_role",
+                "workers"
+            ]
+        },
+        "frontend": {
+            "type": "object",
+            "properties": {
+                "bucket_kms_key_arn": {
+                    "type": "string"
+                },
+                "apps": {
+                    "type": "array"
+                }
+            },
+            "required": [
+                "apps",
+                "bucket_kms_key_arn"
+            ]
+        },
+        "rds": {
+            "type": "object",
+            "properties": {
+                "serverless_dbs": {
+                    "type": "array"
+                },
+                "aurora_dbs": {
+                    "type": "array"
+                },
+                "dbs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "environment_name": {
+                                "type": "string"
+                            },
+                            "user": {
+                                "type": "string"
+                            },
+                            "database_name": {
+                                "type": "string"
+                            },
+                            "allow_cidrs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "retention": {
+                                "type": "integer"
+                            },
+                            "instance_class": {
+                                "type": "string"
+                            },
+                            "engine": {
+                                "type": "string"
+                            },
+                            "port": {
+                                "type": "integer"
+                            },
+                            "engine_version": {
+                                "type": "string"
+                            },
+                            "parameter_group_name": {
+                                "type": "string"
+                            },
+                            "allocated_storage": {
+                                "type": "integer"
+                            },
+                            "apply_immediately": {
+                                "type": "boolean"
+                            },
+                            "snapshot_identifier": {
+                                "type": "string"
+                            },
+                            "shutdown_schedule": {
+                                "type": "object",
+                                "properties": {
+                                    "enabled": {
+                                        "type": "boolean"
+                                    },
+                                    "cron_stop": {
+                                        "type": "string"
+                                    },
+                                    "cron_start": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "cron_start",
+                                    "cron_stop",
+                                    "enabled"
+                                ]
+                            },
+                            "backup": {
+                                "type": "boolean"
+                            },
+                            "storage_encrypted": {
+                                "type": "boolean"
+                            },
+                            "skip_final_snapshot": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "allocated_storage",
+                            "allow_cidrs",
+                            "apply_immediately",
+                            "backup",
+                            "engine",
+                            "engine_version",
+                            "environment_name",
+                            "instance_class",
+                            "name",
+                            "parameter_group_name",
+                            "port",
+                            "retention",
+                            "snapshot_identifier",
+                            "storage_encrypted",
+                            "user"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "aurora_dbs",
+                "dbs",
+                "serverless_dbs"
+            ]
+        },
+        "dms": {
+            "type": "object",
+            "properties": {
+                "instance": {
+                    "type": "array"
+                },
+                "endpoint": {
+                    "type": "array"
+                },
+                "task": {
+                    "type": "array"
+                }
+            },
+            "required": [
+                "endpoint",
+                "instance",
+                "task"
+            ]
+        },
+        "ecr": {
+            "type": "object",
+            "properties": {
+                "trust_account_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "repositories": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name"
+                        ]
+                    }
+                },
+                "kms_key_arn": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "repositories",
+                "trust_account_ids"
+            ]
+        },
+        "ssm": {
+            "type": "object",
+            "properties": {
+                "strings": {
+                    "type": "object",
+                    "properties": {
+                        "/rds/dev-chiron-care-credit/ENDPOINT": {
+                            "type": "string"
+                        },
+                        "/rds/dev-chiron-care-credit/HOST": {
+                            "type": "string"
+                        },
+                        "/rds/dev-chiron-care-credit/NAME": {
+                            "type": "string"
+                        },
+                        "/rds/dev-hephaestus-form-builder/ENDPOINT": {
+                            "type": "string"
+                        },
+                        "/rds/dev-hephaestus-form-builder/HOST": {
+                            "type": "string"
+                        },
+                        "/rds/dev-hephaestus-form-builder/NAME": {
+                            "type": "string"
+                        },
+                        "/rds/dev-hermes-messaging/ENDPOINT": {
+                            "type": "string"
+                        },
+                        "/rds/dev-hermes-messaging/HOST": {
+                            "type": "string"
+                        },
+                        "/rds/dev-hermes-messaging/NAME": {
+                            "type": "string"
+                        },
+                        "/rds/dev-iris-interoffice-chat/ENDPOINT": {
+                            "type": "string"
+                        },
+                        "/rds/dev-iris-interoffice-chat/HOST": {
+                            "type": "string"
+                        },
+                        "/rds/dev-iris-interoffice-chat/NAME": {
+                            "type": "string"
+                        },
+                        "/rds/dev-orpheus-patient-portal/ENDPOINT": {
+                            "type": "string"
+                        },
+                        "/rds/dev-orpheus-patient-portal/NAME": {
+                            "type": "string"
+                        },
+                        "/rds/dev-orpheus-patient-portal/HOST": {
+                            "type": "string"
+                        },
+                        "/rds/dev-plutus-payment-service/ENDPOINT": {
+                            "type": "string"
+                        },
+                        "/rds/dev-plutus-payment-service/HOST": {
+                            "type": "string"
+                        },
+                        "/rds/dev-plutus-payment-service/NAME": {
+                            "type": "string"
+                        },
+                        "/rds/dev-sisyphus-todo/ENDPOINT": {
+                            "type": "string"
+                        },
+                        "/rds/dev-sisyphus-todo/HOST": {
+                            "type": "string"
+                        },
+                        "/rds/dev-sisyphus-todo/NAME": {
+                            "type": "string"
+                        },
+                        "/rds/dev-spark/ENDPOINT": {
+                            "type": "string"
+                        },
+                        "/rds/dev-spark/HOST": {
+                            "type": "string"
+                        },
+                        "/rds/dev-spark/NAME": {
+                            "type": "string"
+                        },
+                        "/rds/dev-telesphorus-telehealth/ENDPOINT": {
+                            "type": "string"
+                        },
+                        "/rds/dev-telesphorus-telehealth/HOST": {
+                            "type": "string"
+                        },
+                        "/rds/dev-telesphorus-telehealth/NAME": {
+                            "type": "string"
+                        },
+                        "/rds/dev-thanatos-autofy/ENDPOINT": {
+                            "type": "string"
+                        },
+                        "/rds/dev-thanatos-autofy/HOST": {
+                            "type": "string"
+                        },
+                        "/rds/dev-thanatos-autofy/NAME": {
+                            "type": "string"
+                        },
+                        "/orpheus/app_log_level": {
+                            "type": "string"
+                        },
+                        "/orpheus/aws_bucket": {
+                            "type": "string"
+                        },
+                        "/orpheus/cache_prefix": {
+                            "type": "string"
+                        },
+                        "/orpheus/db_username": {
+                            "type": "string"
+                        },
+                        "/orpheus/log_level": {
+                            "type": "string"
+                        },
+                        "/orpheus/logging_enabled": {
+                            "type": "string"
+                        },
+                        "/orpheus/mail_mailer": {
+                            "type": "string"
+                        },
+                        "/orpheus/redis_cluster": {
+                            "type": "string"
+                        },
+                        "/orpheus/app_debug": {
+                            "type": "string"
+                        },
+                        "/orpheus/app_env": {
+                            "type": "string"
+                        },
+                        "/orpheus/app_name": {
+                            "type": "string"
+                        },
+                        "/orpheus/cache_driver": {
+                            "type": "string"
+                        },
+                        "/orpheus/db_port": {
+                            "type": "string"
+                        },
+                        "/orpheus/debug_logging_enabled": {
+                            "type": "string"
+                        },
+                        "/orpheus/filesystem_cloud": {
+                            "type": "string"
+                        },
+                        "/orpheus/mail_from_address": {
+                            "type": "string"
+                        },
+                        "/orpheus/redis_cache_db": {
+                            "type": "string"
+                        },
+                        "/orpheus/session_lifetime": {
+                            "type": "string"
+                        },
+                        "/orpheus/app_timezone": {
+                            "type": "string"
+                        },
+                        "/orpheus/broadcast_driver": {
+                            "type": "string"
+                        },
+                        "/orpheus/mail_encryption": {
+                            "type": "string"
+                        },
+                        "/orpheus/mail_username": {
+                            "type": "string"
+                        },
+                        "/orpheus/mailgun_domain": {
+                            "type": "string"
+                        },
+                        "/orpheus/nr_logging_endpoint": {
+                            "type": "string"
+                        },
+                        "/orpheus/queue_connection": {
+                            "type": "string"
+                        },
+                        "/orpheus/redis_client": {
+                            "type": "string"
+                        },
+                        "/orpheus/redis_db": {
+                            "type": "string"
+                        },
+                        "/orpheus/redis_host": {
+                            "type": "string"
+                        },
+                        "/orpheus/db_connection": {
+                            "type": "string"
+                        },
+                        "/orpheus/db_host": {
+                            "type": "string"
+                        },
+                        "/orpheus/db_name": {
+                            "type": "string"
+                        },
+                        "/orpheus/filesystem_driver": {
+                            "type": "string"
+                        },
+                        "/orpheus/mail_driver": {
+                            "type": "string"
+                        },
+                        "/orpheus/mail_port": {
+                            "type": "string"
+                        },
+                        "/orpheus/memcached_host": {
+                            "type": "string"
+                        },
+                        "/orpheus/pusher_app_cluster": {
+                            "type": "string"
+                        },
+                        "/orpheus/queue_timeout": {
+                            "type": "string"
+                        },
+                        "/orpheus/redis_port": {
+                            "type": "string"
+                        },
+                        "/orpheus/https": {
+                            "type": "string"
+                        },
+                        "/orpheus/log_channel": {
+                            "type": "string"
+                        },
+                        "/orpheus/mail_from_name": {
+                            "type": "string"
+                        },
+                        "/orpheus/mail_host": {
+                            "type": "string"
+                        },
+                        "/orpheus/pusher_app_id": {
+                            "type": "string"
+                        },
+                        "/orpheus/session_driver": {
+                            "type": "string"
+                        },
+                        "/orpheus/mix_asset_url": {
+                            "type": "string"
+                        },
+                        "/orpheus/asset_url": {
+                            "type": "string"
+                        },
+                        "/orpheus/twilio_test_phone": {
+                            "type": "string"
+                        },
+                        "/orpheus/twilio_from": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "secured_strings": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "kms_key_arn": {
+                    "type": "string"
+                },
+                "overwrite": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "secured_strings",
+                "strings"
+            ]
+        },
+        "backups": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rule_schedule": {
+                    "type": "string"
+                },
+                "kms_key_arn": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "enabled",
+                "name",
+                "rule_schedule"
+            ]
+        },
+        "log_exporter": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "cloudwatch_logs_export_bucket": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "cloudwatch_logs_export_bucket",
+                "enabled"
+            ]
+        },
+        "gitlab_runner": {
+            "type": "object",
+            "properties": {
+                "infra_deploy": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "enabled"
+                    ]
+                },
+                "ci_deploy": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "docker_machine_instance_type": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "environment": {
+                            "type": "string"
+                        },
+                        "runners": {
+                            "type": "object",
+                            "properties": {
+                                "off_peak_timezone": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "off_peak_timezone"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "enabled"
+                    ]
+                }
+            },
+            "required": [
+                "ci_deploy",
+                "infra_deploy"
+            ]
+        },
+        "elasticache": {
+            "type": "object",
+            "properties": {
+                "redis": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "env": {
+                                "type": "string"
+                            },
+                            "redis_node_type": {
+                                "type": "string"
+                            },
+                            "redis_version": {
+                                "type": "string"
+                            },
+                            "redis_clusters": {
+                                "type": "integer"
+                            },
+                            "at_rest_encryption_enabled": {
+                                "type": "boolean"
+                            },
+                            "multi_az_enabled": {
+                                "type": "boolean"
+                            },
+                            "redis_failover": {
+                                "type": "boolean"
+                            },
+                            "allowed_security_groups": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "redis_parameters": {
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "allowed_security_groups",
+                            "at_rest_encryption_enabled",
+                            "env",
+                            "multi_az_enabled",
+                            "name",
+                            "redis_clusters",
+                            "redis_failover",
+                            "redis_node_type",
+                            "redis_parameters",
+                            "redis_version"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "redis"
+            ]
+        },
+        "eks": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "create_asg_iam_service_linked_role": {
+                    "type": "boolean"
+                },
+                "efs": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "enabled"
+                    ]
+                },
+                "launch_template": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "volume_size": {
+                            "type": "integer"
+                        },
+                        "volume_type": {
+                            "type": "string"
+                        },
+                        "delete_on_termination": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "delete_on_termination",
+                        "name",
+                        "volume_size",
+                        "volume_type"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "node_group": {
+                    "type": "object",
+                    "properties": {
+                        "desired_capacity": {
+                            "type": "integer"
+                        },
+                        "max_capacity": {
+                            "type": "integer"
+                        },
+                        "min_capacity": {
+                            "type": "integer"
+                        },
+                        "instance_types": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": [
+                        "desired_capacity",
+                        "instance_types",
+                        "max_capacity",
+                        "min_capacity"
+                    ]
+                },
+                "map_roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "rolearn": {
+                                "type": "string"
+                            },
+                            "username": {
+                                "type": "string"
+                            },
+                            "groups": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "required": [
+                            "groups",
+                            "rolearn",
+                            "username"
+                        ]
+                    }
+                },
+                "map_users": {
+                    "type": "array"
+                },
+                "map_accounts": {
+                    "type": "array"
+                }
+            },
+            "required": [
+                "create_asg_iam_service_linked_role",
+                "efs",
+                "enabled",
+                "launch_template",
+                "map_accounts",
+                "map_roles",
+                "map_users",
+                "name",
+                "node_group",
+                "version"
+            ]
+        },
+        "custom": {
+            "type": "object",
+            "properties": {
+                "sqs": {
+                    "type": "object",
+                    "properties": {
+                        "queues": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "delay_seconds": {
+                                        "type": "integer"
+                                    },
+                                    "max_message_size": {
+                                        "type": "integer"
+                                    },
+                                    "message_retention_seconds": {
+                                        "type": "integer"
+                                    },
+                                    "receive_wait_time_seconds": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "delay_seconds",
+                                    "max_message_size",
+                                    "message_retention_seconds",
+                                    "name",
+                                    "receive_wait_time_seconds"
+                                ]
+                            }
+                        }
+                    },
+                    "required": [
+                        "queues"
+                    ]
+                }
+            },
+            "required": [
+                "sqs"
+            ]
+        }
+    },
+    "required": [
+        "account_name",
+        "aws_account_id",
+        "aws_region",
+        "backups",
+        "ecr",
+        "ecs",
+        "frontend",
+        "gitlab_runner",
+        "log_exporter",
+        "notifications_sns_topic_arn",
+        "org_name",
+        "rds",
+        "ssm"
+    ]
+}

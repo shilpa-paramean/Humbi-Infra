@@ -1,0 +1,67 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://dnx.solutions/schemas/citadel/backup",
+    "type": "object",
+    "properties": {
+        "aws_region": {
+            "type": "string"
+        },
+        "aws_account_id": {
+            "type": "string"
+        },
+        "org_name": {
+            "type": "string"
+        },
+        "account_name": {
+            "type": "string"
+        },
+        "account_type": {
+            "type": "string"
+        },
+        "backups": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rule_schedule": {
+                    "type": "string"
+                },
+                "vault_events": {
+                    "type": "array"
+                },
+                "copy_action": {
+                    "type": "object",
+                    "properties": {
+                        "aws_account_id": {
+                            "type": "string"
+                        },
+                        "destination_vault_arn": {
+                            "type": "string"
+                        },
+                        "cold_storage_after": {
+                            "type": "number"
+                        },
+                        "delete_after": {
+                            "type": "number"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "enabled",
+                "name",
+                "rule_schedule"
+            ]
+        }
+    },
+    "required": [
+        "account_name",
+        "aws_account_id",
+        "aws_region",
+        "backups"
+    ]
+}

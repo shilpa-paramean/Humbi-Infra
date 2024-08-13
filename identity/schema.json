@@ -1,0 +1,192 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://dnx.solutions/schemas/citadel/identity",
+    "type": "object",
+    "properties": {
+        "aws_region": {
+            "type": "string"
+        },
+        "aws_account_id": {
+            "type": "string"
+        },
+        "org_name": {
+            "type": "string"
+        },
+        "job_function_roles": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "create_default_roles": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "create_default_roles",
+                "enabled"
+            ]
+        },
+        "ci_deploy": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "create_user": {
+                    "type": "boolean"
+                },
+                "create_instance_profile": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "create_instance_profile",
+                "create_user",
+                "enabled"
+            ]
+        },
+        "ci_deploy_access": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "trust_account_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "trust_arns": {
+                    "type": "array"
+                },
+                "ci_deploy_custom_policy": {
+                    "type": "string"
+                },
+                "policy_sets": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "cf_deploy_custom_policy": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "enabled",
+                "trust_account_ids",
+                "trust_arns"
+            ]
+        },
+        "saml_provider": {
+            "type": "object",
+            "properties": {
+                "get_from_baseline_cf_stack": {
+                    "type": "boolean"
+                },
+                "existing_arn": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "existing_arn",
+                "get_from_baseline_cf_stack"
+            ]
+        },
+        "iam_password_policy": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "aws_support_role": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
+        },
+        "oidc": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "vendor": {
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "array"
+                }
+            },
+            "required": [
+                "enabled",
+                "roles"
+            ]
+        },
+        "custom": {
+            "type": "object",
+            "properties": {
+                "role": {
+                    "type": "object",
+                    "properties": {
+                        "policy": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": [
+                        "policy"
+                    ]
+                }
+            },
+            "required": [
+                "role"
+            ]
+        },
+        "ssosync": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "timeout": {
+                    "type": "integer"
+                },
+                "google_group_match": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "enabled",
+                "google_group_match",
+                "timeout"
+            ]
+        }
+    },
+    "required": [
+        "aws_account_id",
+        "aws_region",
+        "aws_support_role",
+        "ci_deploy",
+        "ci_deploy_access",
+        "iam_password_policy",
+        "job_function_roles",
+        "oidc",
+        "org_name",
+        "saml_provider"
+    ]
+}
