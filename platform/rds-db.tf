@@ -1,6 +1,6 @@
 module "rds_db" {
   for_each              = { for db in local.workspace.rds.dbs : db.name => db }
-  source                = "git::https://github.com/DNXLabs/terraform-aws-rds.git?ref=0.9.0"
+  source                = "./modules/rds_db"
   db_type               = try(each.value.db_type, "rds")
   name                  = each.value.name
   environment_name      = each.value.environment_name
@@ -23,6 +23,7 @@ module "rds_db" {
   skip_final_snapshot   = try(each.value.skip_final_snapshot, "false")
   storage_type          = try(each.value.storage_type, null)
   iops                  = try(each.value.iops, null)
+
 
   allow_security_group_ids = concat(
     [for cluster_name in try(each.value.ecs_cluster_names, []) : { 
